@@ -63,25 +63,11 @@ def upload():
         model="gpt-3.5-turbo",
         messages=messages,
     )
+
+    summary = completion.choices[0].message.content
     
-    return completion.choices[0].message.content
+    print(summary)
+    return render_template('resultado.html', summary=summary)
 
 if __name__ == '__main__':
     app.run()
-
-
-    """   
-    is_continue = input("Press 'S' to continue or 'N' to cancel: ").upper()
-
-    if is_continue == 'S':
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=messages,
-        )
-
-        print("\n***************************MUSIC********************************\n")
-        print(completion.choices[0].message.content)
-        print("\n****************************************************************\n")
-    else:
-        exit(0)
-    """

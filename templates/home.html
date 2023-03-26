@@ -3,12 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Upload áudio</title>
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">
   </head>
   <body>
-    <h1>Upload de arquivos de áudio</h1>
-    <form action="/" method="POST" enctype="multipart/form-data">
-      <input type="file" name="audio" accept="audio/*">
-      <input type="submit" value="Enviar">
-    </form>
+    <div class="container">
+      <h1 class="mt-5 mb-4">Upload de arquivos de áudio</h1>
+      <form action="/" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="audio">Selecione o arquivo de áudios:</label>
+          <input type="file" class="form-control-file" name="audio" accept="audio/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
   </body>
 </html>
