@@ -1,4 +1,4 @@
-/* estilo para o cabeçalho */
+/* Estilos para o cabeçalho */
 header {
   background-color: #333;
   color: #fff;
@@ -23,7 +23,7 @@ header h1 {
   font-size: 2rem;
 }
 
-/* ajustes no resto do estilo */
+/* Ajustes no resto do estilo */
 body {
   background-color: #f2f2f2;
   font-family: Arial, sans-serif;
@@ -34,7 +34,7 @@ form {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 2rem auto;
   max-width: 500px;
   padding: 2rem;
@@ -60,7 +60,13 @@ input[type="submit"]:hover {
   background-color: #006f8f;
 }
 
-.content .container{
+.content {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.content .container {
   width: 40%;
 }
 
@@ -68,21 +74,15 @@ input[type="submit"]:hover {
   text-align: center;
 }
 
-.mensagem {
-  text-align: center;
-}
-
-.content {
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-}
-
 .container .form-group .form-control-mensagem {
   margin-top: 2rem;
   width: 30%;
   text-align: justify;
   padding: 4%;
+}
+
+.mensagem {
+  text-align: center;
 }
 
 .loading {
