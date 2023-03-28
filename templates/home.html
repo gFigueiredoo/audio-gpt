@@ -6,15 +6,30 @@
     <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">
   </head>
   <body>
-    <div class="container">
-      <h1 class="mt-5 mb-4">Upload de arquivos de áudio</h1>
-      <form action="/" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="audio">Selecione o arquivo de áudios:</label>
-          <input type="file" class="form-control-file" name="audio" accept="audio/*">
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
+    <header>
+      <h1 class="mt-5 mb-4">figo.ia</h1>
+    </header>
+    <div class="content">
+      <div class="container">
+        <form id="upload-form" action="/" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="audio">Selecione o arquivo de áudios:</label>
+            <input type="file" class="form-control-file" name="audio" accept="audio/*">
+          </div>
+          <button id="submit-button" type="submit" class="btn btn-primary">Enviar</button>
+          <div id="loading" class="loading"></div>
+        </form>
+      </div>
     </div>
+    <script>
+      const form = document.getElementById('upload-form');
+      const submitButton = document.getElementById('submit-button');
+      const loading = document.getElementById('loading');
+
+      form.addEventListener('submit', () => {
+        loading.style.display = 'block';
+        submitButton.disabled = true;
+      });
+    </script>
   </body>
 </html>

@@ -53,11 +53,11 @@ def upload():
         transcript = openai.Audio.transcribe("whisper-1", audio_file).text   
         
     messages = [
-        {"role": "system", "content": "You will do a resume of the music"},
+        {"role": "system", "content": "You will do a formal resume of this text"},
         {"role": "user", "content": transcript}
     ]
 
-    cost = num_tokens_from_messages(messages) * COST_TOKEN
+    #cost = num_tokens_from_messages(messages) * COST_TOKEN
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
