@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 from pydub import AudioSegment
 
 COST_TOKEN = 0.000002
-openai.api_key = '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'
+openai.api_key = ''
 
 def num_tokens_from_messages(messages, model="gpt-3.5-turbo"):
     try:
