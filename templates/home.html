@@ -3,28 +3,57 @@
   <head>
     <meta charset="utf-8">
     <title>Upload áudio</title>
-    <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-XXXXX" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <header>
-      <h1 class="mt-5 mb-4">figo.ia</h1>
+      <div class="logo">
+        <h1>figo.ia</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Página Inicial</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
     </header>
+    
     <div class="content">
       <div class="container">
-        <form id="upload-form" action="/" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="audio">Selecione o arquivo de áudios:</label>
-            <input type="file" class="form-control-file" name="audio" accept="audio/*">
-          </div>
-          <button id="submit-button" type="submit" class="btn btn-primary">Enviar</button>
-          <div id="loading" class="loading"></div>
-        </form>
+          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="audio" class="file-upload">
+                <i class="fa-solid fa-magnifying-glass"></i> Escolher arquivo
+                <input type="file" id="audio" name="audio" accept="audio/*">
+              </label>    
+              <span id="file-name" style="display: flow-root;"></span>    
+            </div>
+            <button id="submit-button" type="submit" class="btn btn-primary">Enviar</button>    
+            <div id="loading" class="loading"></div>
+          </form>
       </div>
     </div>
+    
+    <footer>
+      <div class="container">
+        <div class="footer-info">
+          <p>Todos os direitos reservados © 2023 figo.ia</p>
+        </div>
+      </div>
+    </footer>
+    
     <script>
       const form = document.getElementById('upload-form');
       const submitButton = document.getElementById('submit-button');
       const loading = document.getElementById('loading');
+      const fileName = document.getElementById('file-name');
+      const audioInput = document.getElementById('audio');
+
+      audioInput.addEventListener('change', () => {
+        fileName.textContent = audioInput.files[0].name;
+      });
 
       form.addEventListener('submit', () => {
         loading.style.display = 'block';

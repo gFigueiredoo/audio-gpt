@@ -12,10 +12,13 @@
     <div class="container">
       <div class="row justify-content-center mt-5">
         <div class="col-md-8">
+          <div class = "buttons">
+            <a href="/" class="btn btn-primary">Voltar</a>
+            <a href="data:text/plain;charset=utf-8,{{ summary }}" download="resultado.txt" class="btn btn-primary">Baixar</a>
+          </div>
           <div class="form-group">
             <textarea class="form-control-mensagem" name="mensagem" id="mensagem" rows="50" readonly>{{ summary }}</textarea>
           </div>          
-          <a href="/" class="btn btn-primary">Voltar</a>
         </div>
       </div>
     </div>
