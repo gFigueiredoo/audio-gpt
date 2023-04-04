@@ -3,9 +3,10 @@ import tiktoken
 import logging
 from flask import Flask, request, render_template
 from pydub import AudioSegment
+import youtube_dl
 
 COST_TOKEN = 0.000002
-openai.api_key = ''
+openai.api_key = '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'
 
 def num_tokens_from_messages(messages, model="gpt-3.5-turbo"):
     try:
@@ -25,7 +26,6 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo"):
     else:
         raise NotImplementedError(f"""num_tokens_from_messages() is not presently implemented for model {model}.""")
 
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 console_handler = logging.StreamHandler()
@@ -44,16 +44,14 @@ def home():
 def upload():
     file = request.files['audio']
     audio = AudioSegment.from_file(file)
-    # Set the output format to mp4
     output_format = "mp4"
-    # Export the audio in mp4 format
     audio.export('audio_mp4.' + output_format, format=output_format)
     
     with open(f"D:\\Projetos\\meet\\audio_mp4.{output_format}", "rb") as audio_file:
         transcript = openai.Audio.transcribe("whisper-1", audio_file).text   
         
     messages = [
-        {"role": "system", "content": "You will do a formal resume of this text"},
+        {"role": "system", "content": "You will do a formal resume and a minute of this meeting. You need especify what is resume and what is minute, always put a title in each text."},
         {"role": "user", "content": transcript}
     ]
 
