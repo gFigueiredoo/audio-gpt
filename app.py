@@ -3,7 +3,6 @@ import tiktoken
 import logging
 from flask import Flask, request, render_template
 from pydub import AudioSegment
-import youtube_dl
 
 COST_TOKEN = 0.000002
 openai.api_key = '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'
@@ -51,7 +50,7 @@ def upload():
         transcript = openai.Audio.transcribe("whisper-1", audio_file).text   
         
     messages = [
-        {"role": "system", "content": "You will do a formal resume and a minute of this meeting. You need especify what is resume and what is minute, always put a title in each text."},
+        {"role": "system", "content": "You will do a formal resume and a minute of this meeting. You need especify what is resume and what is minute, always put a title in each text. You need to separate paragraphs correctly"},
         {"role": "user", "content": transcript}
     ]
 
@@ -60,9 +59,16 @@ def upload():
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
+        temperature=0.2,
+    )
+    
+    completion2 = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages,
+        temperature=2,
     )
 
-    summary = completion.choices[0].message.content
+    summary = completion.choices[0].message.content + "\n\n\n" + completion2.choices[0].message.content
     
     print(summary)
     return render_template('resultado.html', summary=summary)
