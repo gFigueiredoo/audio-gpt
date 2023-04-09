@@ -50,7 +50,7 @@ def upload():
         transcript = openai.Audio.transcribe("whisper-1", audio_file).text   
         
     messages = [
-        {"role": "system", "content": "You will do a formal resume and a minute of this meeting. You need especify what is resume and what is minute, always put a title in each text. You need to separate paragraphs correctly"},
+        {"role": "system", "content": "You will do a formal resume and a minute of this meeting. You need especify what is resume and what is minute, always put a title in each text. In the minute, you need put title in the text, like introduction, conclusion, nexts steps."},
         {"role": "user", "content": transcript}
     ]
 
@@ -65,7 +65,7 @@ def upload():
     completion2 = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
-        temperature=2,
+        temperature=1,
     )
 
     summary = completion.choices[0].message.content + "\n\n\n" + completion2.choices[0].message.content
